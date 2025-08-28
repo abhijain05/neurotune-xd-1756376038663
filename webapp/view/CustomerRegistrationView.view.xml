@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:core="sap.ui.core"
+  xmlns:richtexteditor="sap.ui.richtexteditor"
+  xmlns:viz="sap.viz.ui5"
+  controllerName="preview.app.controller.CustomerRegistrationView"
+  displayBlock="true">
+  <Page title="CustomerRegistrationView" enableScrolling="true">
+    <content>
+      <Page id="page_jhv8m53x" title="CustomerRegistration">
+        <form:SimpleForm id="simpleform_vv3fxmw4" editable="true" layout="ResponsiveGridLayout">
+          <Button id="button_69mqv6gj" text="Submit" type="Emphasized"/>
+        </form:SimpleForm>
+      </Page>
+    </content>
+  </Page>
+</mvc:View>

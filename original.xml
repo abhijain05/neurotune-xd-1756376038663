@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebDynpro xmlns="http://www.sap.com/wd/webdynpro">
+  <View name="CustomerRegistrationView">
+    <Title>Customer Registration</Title>
+    <FormContainer id="formContainer">
+      <FormElement id="firstNameElement">
+        <Label text="First Name" />
+        <InputField id="firstNameField" value="{/firstName}" />
+      </FormElement>
+      <FormElement id="lastNameElement">
+        <Label text="Last Name" />
+        <InputField id="lastNameField" value="{/lastName}" />
+      </FormElement>
+      <FormElement id="emailElement">
+        <Label text="Email" />
+        <InputField id="emailField" value="{/email}" required="true" />
+      </FormElement>
+      <FormElement id="phoneElement">
+        <Label text="Phone Number" />
+        <InputField id="phoneField" value="{/phoneNumber}" />
+      </FormElement>
+      <FormElement id="companyElement">
+        <Label text="Company Name" />
+        <InputField id="companyField" value="{/companyName}" />
+      </FormElement>
+      <FormElement id="jobTitleElement">
+        <Label text="Job Title" />
+        <InputField id="jobTitleField" value="{/jobTitle}" />
+      </FormElement>
+      <FormElement id="addressElement">
+        <Label text="Address" />
+        <InputField id="addressField" value="{/address}" />
+      </FormElement>
+      <FormElement id="termsElement">
+        <Label text="Terms and Conditions" />
+        <InputField id="termsField" value="{/termsAndConditions}" type="checkbox"/>
+      </FormElement>
+      <FormElement id="submitButtonElement">
+        <Button text="Submit" id="submitButton" press="onSubmit"/>
+      </FormElement>
+      <MessageArea id="messageArea"/>
+    </FormContainer>
+  </View>
+  <Controller name="CustomerRegistrationViewController">
+    <method name="onSubmit">
+      <!--Implementation for Submit button press -->
+      <source>
+        <![CDATA[
+          //Check Email Validation
+          if (!wdContext.nodeCustomer.currentCustomerElement().getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            wdComponentAPI.getMessageManager().reportSuccess("Invalid Email", true);
+            return;
+          }
+
+          //Check Terms and Conditions
+          if(!wdContext.nodeCustomer.currentCustomerElement().getTermsAndConditions()){
+            wdComponentAPI.getMessageManager().reportSuccess("Please accept the Terms and Conditions", true);
+            return;
+          }
+
+
+          //Save Data (Replace with actual saving logic)
+          wdComponentAPI.getMessageManager().reportSuccess("Registration Successful!", true);
+          wdContext.nodeCustomer.currentCustomerElement().clear();
+
+
+        ]]>
+      </source>
+    </method>
+    <wdContext>
+      <node name="Customer">
+        <attribute name="firstName" type="String"/>
+        <attribute name="lastName" type="String"/>
+        <attribute name="email" type="String"/>
+        <attribute name="phoneNumber" type="String"/>
+        <attribute name="companyName" type="String"/>
+        <attribute name="jobTitle" type="String"/>
+        <attribute name="address" type="String"/>
+        <attribute name="termsAndConditions" type="boolean"/>
+      </node>
+    </wdContext>
+
+  </Controller>
+</WebDynpro>
