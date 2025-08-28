@@ -1,20 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  xmlns:layout="sap.ui.layout"
-  xmlns:form="sap.ui.layout.form"
-  xmlns:core="sap.ui.core"
-  xmlns:richtexteditor="sap.ui.richtexteditor"
-  xmlns:viz="sap.viz.ui5"
-  controllerName="preview.app.controller.CustomerRegistrationView"
-  displayBlock="true">
-  <Page title="CustomerRegistrationView" enableScrolling="true">
-    <content>
-      <Page id="page_jhv8m53x" title="CustomerRegistration">
-        <form:SimpleForm id="simpleform_vv3fxmw4" editable="true" layout="ResponsiveGridLayout">
-          <Button id="button_69mqv6gj" text="Submit" type="Emphasized"/>
-        </form:SimpleForm>
-      </Page>
-    </content>
-  </Page>
+<mvc:View
+	controllerName="converted.customerregistrationview.controller.CustomerRegistrationView"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+          xmlns:commons="sap.ui.commons">
+	<Page title="Customer Registration">
+		<content>
+			<form:SimpleForm id="simpleForm" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="9" emptySpanM="9"
+				layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="First Name" required="true" />
+					<Input value="{/firstName}" placeholder="Enter First Name" />
+
+					<Label text="Last Name" required="true"/>
+					<Input value="{/lastName}" placeholder="Enter Last Name"/>
+
+					<Label text="Email" required="true" />
+					<Input value="{/email}" placeholder="Enter Email" type="Email"/>
+
+					<Label text="Phone Number"/>
+					<Input value="{/phoneNumber}" placeholder="Enter Phone Number"/>
+
+					<Label text="Company Name"/>
+					<Input value="{/companyName}" placeholder="Enter Company Name"/>
+
+					<Label text="Job Title"/>
+					<Input value="{/jobTitle}" placeholder="Enter Job Title"/>
+
+					<Label text="Address"/>
+					<Input value="{/address}" placeholder="Enter Address"/>
+
+					<CheckBox text="Terms and Conditions" selected="{/termsAndConditions}" />
+				</form:content>
+        <form:buttons>
+          <Button id="submitButton" text="Submit" type="Emphasized" press=".onSubmit" />
+        </form:buttons>
+			</form:SimpleForm>
+			<MessageArea id="messageArea" class="sapUiSmallMarginBegin sapUiMediumMarginEnd" items="{messages>messages}" />
+		</content>
+	</Page>
 </mvc:View>
